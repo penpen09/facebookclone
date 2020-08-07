@@ -21,24 +21,29 @@ class PicturesController < ApplicationController
   def edit
   end
 
-  # POST /pictures
-  # POST /pictures.json
+  def confirm
+    @picture = Picture.new(picture_params)
+    @picture.id = params[:id]
+    render :new if @picture.invalid?
+  end
+
   def create
     @picture = Picture.new(picture_params)
-
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
-      else
-        format.html { render :new }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+    if params[:back]
+      render :new
+    else
+      respond_to do |format|
+        if @picture.save
+          format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+          # format.json { render :show, status: :created, location: @picture }
+        else
+          format.html { render :new }
+          # format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
-  # PATCH/PUT /pictures/1
-  # PATCH/PUT /pictures/1.json
   def update
     respond_to do |format|
       if @picture.update(picture_params)
@@ -69,6 +74,6 @@ class PicturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def picture_params
-      params.require(:picture).permit(:image, :image_cache, :content)
+      params.require(:picture).permit(:id, :image, :image_cache, :content)
     end
 end
