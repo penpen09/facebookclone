@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" ><%= image_tag 'facebook.png', :width => '30',class:"min-vw-30" %></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <% if logged_in? %>
+          <p class="navbar-text"><%= link_to(root_path) do %><span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
+          <p class="navbar-text navbar-right"><%= link_to "Logout", session_path(current_user.id), method: :delete %></p>
+          <p class="navbar-text navbar-right"><%= link_to(user_path(current_user.id)) do %><span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
+        <% else %>
+          <p class="navbar-text navbar-right"><%= link_to "Sign up", new_user_path %></p>
+          <p class="navbar-text navbar-right"><%= link_to "Login", new_session_path %></p>
+        <% end %>
+      </div>
+    </div>
+</nav>
