@@ -23,6 +23,9 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1/edit
   def edit
+    unless current_user.id == @picture.user_id
+      redirect_to pictures_path, notice: '他人のページは見れません'
+    end
   end
 
   def confirm
@@ -62,10 +65,14 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1
   # DELETE /pictures/1.json
   def destroy
-    @picture.destroy
-    respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-      format.json { head :no_content }
+    unless current_user.id == @picture.user_id
+      redirect_to pictures_path, notice: '他人のページは削除できません'
+    else
+      @picture.destroy
+      respond_to do |format|
+        format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

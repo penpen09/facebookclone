@@ -1,5 +1,5 @@
 <%= render 'header' %>
-<p id="notice"><%= notice %></p>
+<p id="notice"></p>
 
 <h1>Pictures</h1>
 
@@ -13,8 +13,11 @@
               <p><%= picture.content%><%= picture.user.name %></p>
               <p>
                 <%= link_to 'Show', picture, class: 'btn btn-primary' %>
-                <%= link_to 'Edit', edit_picture_path(picture), class: 'btn btn-primary' %>
-                <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-primary'%>
+                <% if current_user.id == picture.user_id %>
+                  <%= link_to 'Edit', edit_picture_path(picture), class: 'btn btn-primary'%>
+                  <%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn btn-primary' %>
+                <% else %>
+                <% end %>
               </p>
             </div>
           </div>
