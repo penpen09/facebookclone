@@ -11,13 +11,11 @@
       <div class="collapse navbar-collapse" id="navigation">
         <% if logged_in? %>
           <p class="navbar-text"><%= link_to(root_path) do %><span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
-          <p class="navbar-text"><%= link_to(pictures_path) do %><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
-          <p class="navbar-text"><%= link_to(new_picture_path) do %><span class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
           <p class="navbar-text navbar-right"><%= link_to "Logout", session_path(current_user.id), method: :delete %></p>
           <p class="navbar-text navbar-right"><%= link_to(user_path(current_user.id)) do %><span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:20px;" ></span><% end %></p>
         <% else %>
-        <p class="navbar-text navbar-right"><%= link_to "Sign up", new_user_path %></p>
-        <p class="navbar-text navbar-right"><%= link_to "Login", new_session_path %></p>
+          <p class="navbar-text navbar-right"><%= link_to "Sign up", new_user_path %></p>
+          <p class="navbar-text navbar-right"><%= link_to "Login", new_session_path %></p>
         <% end %>
       </div>
     </div>

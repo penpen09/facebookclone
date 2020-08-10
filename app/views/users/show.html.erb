@@ -1,2 +1,5 @@
-<h1><%= @user.name %>のページ</h1>
-<p>メールアドレス: <%= @user.email %></p>
+<%= render 'header' %>
+<div>
+  <h1 class="text-center"><%= @user.name %>のページ</h1>
+  <p class="text-center">メールアドレス: <%= @user.email %></p>
+</div>
