@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Facebookclone
   class Application < Rails::Application
     config.time_zone = 'Tokyo'
+    config.assets.initialize_on_precompile = false
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja
     config.load_defaults 5.2
